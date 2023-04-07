@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Xenon Boostrap Admin Panel" />
+    <meta name="author" content="Laborator.co" />
+    <meta name="robots" content="follow, noindex, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
+    <title>Xenon - Blank Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arimo:400,700,400italic" id="style-resource-1">
+    <link rel="stylesheet" href="~/Content/css/fonts/linecons/css/linecons.css" id="style-resource-2">
+    <link rel="stylesheet" href="~/Content/css/fonts/fontawesome/css/font-awesome.min.css" id="style-resource-3">
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css" id="style-resource-4">
+    <link rel="stylesheet" href="~/Content/css/xenon-core.css" id="style-resource-5">
+    <link rel="stylesheet" href="~/Content/css/xenon-forms.css" id="style-resource-6">
+    <link rel="stylesheet" href="~/Content/css/xenon-components.css" id="style-resource-7">
+    <link rel="stylesheet" href="~/Content/css/xenon-skins.css" id="style-resource-8">
+    <link rel="stylesheet" href="~/Content/css/custom.css" id="style-resource-9">
+    <script src="~/Content/js/jquery-1.11.1.min.js"></script> 
+</head>
+<body class="page-body">
+
+    <div class="page-container">
+        @Html.Partial("sidebar")
+
+        <div class="main-content">
+            <nav class="navbar user-info-navbar fixed" role="navigation">
+                <ul class="user-info-menu left-links list-inline list-unstyled">
+                    <li class="hidden-sm hidden-xs"> <a href="#" data-toggle="sidebar"> <i class="fa-bars"></i> </a> </li>
+                    <li class="dropdown hover-line language-switcher">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="~/Content/images/flags/flag-uk.png" alt="flag-uk" />
+                            English
+                        </a>
+                        <ul class="dropdown-menu languages">
+                            <li class="active">
+                                <a href="#">
+                                    <img src="~/Content/images/flags/flag-uk.png" alt="flag-uk" />
+                                    English
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="~/Content/images/flags/flag-fr.png" alt="flag-fr" />
+                                    Fran&ccedil;ais
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="user-info-menu right-links list-inline list-unstyled">
+                    <li class="search-form">
+                        <form name="userinfo_search_form" method="get" action="search/"> <input type="text" name="s" class="form-control search-field" placeholder="Type to search..." /> <button type="submit" class="btn btn-link"> <i class="linecons-search"></i> </button> </form>
+                    </li>
+                    <li class="dropdown user-profile">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="~/Content/images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" /> <span>
+                                John Smith
+                                <i class="fa-angle-down"></i>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu user-profile-menu list-unstyled">
+                            
+                            <li>
+                                <a href="#help">
+                                    <i class="fa-info"></i>
+                                    Help
+                                </a>
+                            </li>
+                            <li class="last">
+                                <a href="lockscreen/">
+                                    <i class="fa-lock"></i>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+         
+            @RenderBody()
+            <br />
+            @Html.Partial("footer")
+        </div>
+    </div>
+
+    <script src="~/Content/js/bootstrap.min.js" id="script-resource-1"></script>
+    <script src="~/Content/js/TweenMax.min.js" id="script-resource-2"></script>
+    <script src="~/Content/js/resizeable.js" id="script-resource-3"></script>
+    <script src="~/Content/js/joinable.js" id="script-resource-4"></script>
+    <script src="~/Content/js/xenon-api.js" id="script-resource-5"></script>
+    <script src="~/Content/js/xenon-toggles.js" id="script-resource-6"></script>
+    <script src="~/Content/js/xenon-custom.js" id="script-resource-7"></script>
+</body>
+</html>

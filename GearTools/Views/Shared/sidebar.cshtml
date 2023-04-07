@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "sidebar";
+}
+
+<div class="sidebar-menu toggle-others fixed">
+    <div class="sidebar-menu-inner">
+        <header class="logo-env">
+            <div class="logo"> 
+            <a href="" class="logo-expanded">
+                <img src="~/Content/images/logo@2x.png" width="80" alt="" />
+                  </a>
+            <a href="" class="logo-collapsed"> 
+                <img src="~/Content/images/logo-collapsed@2x.png" width="40" alt="" /> 
+                </a>
+            </div>
+            <div class="mobile-menu-toggle visible-xs"> 
+            <a href="#" data-toggle="user-info-menu">
+                <i class="fa-sitemap"></i>
+                </a>
+            <a href="#" data-toggle="mobile-menu"> <i class="fa-bars"></i> 
+                </a> </div>
+        </header>
+        <ul id="main-menu" class="main-menu">
+            <li>
+                <a href="@Url.Action("Index","Home")">
+                    <i class="linecons-cog"></i><span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","Projet")">
+                    <i class="linecons-cog"></i><span class="title">Projet</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
