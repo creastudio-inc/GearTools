@@ -15,7 +15,7 @@ namespace GearTools.Controllers
         {
             //string url = "https://themes.laborator.co/xenon/forms/native/"; System.Collections.Immutable, 
             //var result = WebsiteCopier.Tools.RemplirText(url);
-            var demo = AnalyticsCode.CsharpClassParser.Parse("C:\\Users\\LaptopProBook\\source\\repos\\GearTools\\GearTools\\Models\\Student.cs");
+         //   var demo = AnalyticsCode.CsharpClassParser.Parse("C:\\Users\\LaptopProBook\\source\\repos\\GearTools\\GearTools\\Models\\Student.cs");
            
 
             return View();
