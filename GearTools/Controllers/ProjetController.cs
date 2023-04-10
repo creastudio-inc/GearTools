@@ -8,6 +8,7 @@ namespace GearTools.Controllers
 {
     public class ProjetController : Controller
     {
+
         // GET: Projet
         public ActionResult Index()
         {
@@ -18,8 +19,10 @@ namespace GearTools.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateLayoutDashboard(string url,string wrapperClass)
+        public ActionResult CreateLayoutDashboard(string baseUrl, string url,string wrapperClass)
         {
+            WebsiteCopier.Tools.FolderTmp = Server.MapPath("~/tmp");
+            WebsiteCopier.Tools.baseUrl = baseUrl;
             var result = WebsiteCopier.Tools.RemplirLayout(url, wrapperClass);
             ViewBag.Layout = result.Layout;
             ViewBag.Nav = result.Nav;

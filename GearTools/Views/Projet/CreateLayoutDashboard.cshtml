@@ -13,6 +13,12 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
+        @Html.Label("baseUrl", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBox("baseUrl", "https://gambolthemes.net/html-items/cursus_main_demo/", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
         @Html.Label("url", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextBox("url", "https://gambolthemes.net/html-items/cursus_main_demo/student_dashboard.html", new { @class = "form-control" })

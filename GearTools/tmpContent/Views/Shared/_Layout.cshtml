@@ -1,0 +1,39 @@
+<!DOCTYPE html>   
+<html>
+<head>
+<title> Dashboard</title>
+<meta charset="utf-8"     >
+<meta   http-equiv="X-UA-Compatible"  content="IE=edge" >
+<meta    charset="viewport" content="width=device-width, shrink-to-fit=9" >
+<meta    charset="description" content="Gambolthemes" >
+<meta    charset="author" content="Gambolthemes" >
+
+<link rel="icon" href="images/fav.png" type="image/png" >
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,500"  >
+<link rel="stylesheet" href="vendor/unicons-2.0.1/css/unicons.css"  >
+<link rel="stylesheet" href="css/vertical-responsive-menu1.min.css"  >
+<link rel="stylesheet" href="css/student_dashboard.css"  >
+<link rel="stylesheet" href="css/student_responsive.css"  >
+<link rel="stylesheet" href="css/night-mode.css"  >
+<link rel="stylesheet" href="vendor/fontawesome-free/css/all.min.css"  >
+<link rel="stylesheet" href="vendor/OwlCarousel/assets/owl.carousel.css"  >
+<link rel="stylesheet" href="vendor/OwlCarousel/assets/owl.theme.default.min.css"  >
+<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="vendor/semantic/semantic.min.css" type="text/css" >
+
+@RenderSection("styles", required: false)
+</head>
+<body> 
+@Html.Partial("_header")
+@Html.Partial("_nav")
+<div class='wrapper'>
+@RenderBody()
+@Html.Partial("_footer")
+
+</div>
+
+@Html.Partial("_script")
+@RenderSection("scripts", required: false)
+</body>
+</html>
+

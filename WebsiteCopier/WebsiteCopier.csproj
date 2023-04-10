@@ -57,6 +57,8 @@
     <Compile Include="Entity\Layout\Nav.cs" />
     <Compile Include="Entity\Layout\Script.cs" />
     <Compile Include="FileFolder.cs" />
+    <Compile Include="Step1.cs" />
+    <Compile Include="Step2.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Entity\Form.cs" />
     <Compile Include="Entity\Panel.cs" />
