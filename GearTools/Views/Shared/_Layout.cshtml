@@ -17,7 +17,46 @@
     <link rel="stylesheet" href="~/Content/css/xenon-components.css" id="style-resource-7">
     <link rel="stylesheet" href="~/Content/css/xenon-skins.css" id="style-resource-8">
     <link rel="stylesheet" href="~/Content/css/custom.css" id="style-resource-9">
-    <script src="~/Content/js/jquery-1.11.1.min.js"></script> 
+    <script src="~/Content/js/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+    <script src="/signalr/hubs"></script>
+
+    <script type="text/javascript">
+        function ProgressBarModal(showHide) {
+
+            if (showHide === 'show') {
+                $('#mod-progress').modal('show');
+                if (arguments.length >= 2) {
+                    $('#progressBarParagraph').text(arguments[1]);
+                } else {
+                    $('#progressBarParagraph').text('U tijeku...');
+                }
+
+                window.progressBarActive = true;
+
+            } else {
+                $('#mod-progress').modal('hide');
+                window.progressBarActive = false;
+            }
+        }
+        $(function () {
+            // Reference the auto-generated proxy for the hub.
+            var progress = $.connection.progressHub;
+            console.log(progress);
+            // Create a function that the hub can call back to display messages.
+            progress.client.AddProgress = function (message, percentage) {
+                ProgressBarModal("show", message + " " + percentage);
+                $('#ProgressMessage').width(percentage);
+                if (percentage == "100%") {
+                    ProgressBarModal();
+                }
+            };
+            $.connection.hub.start().done(function () {
+                var connectionId = $.connection.hub.id;
+                console.log(connectionId);
+            });
+        });
+    </script>
 </head>
 <body class="page-body">
 
@@ -61,7 +100,7 @@
                             </span>
                         </a>
                         <ul class="dropdown-menu user-profile-menu list-unstyled">
-                            
+
                             <li>
                                 <a href="#help">
                                     <i class="fa-info"></i>
@@ -78,13 +117,41 @@
                     </li>
                 </ul>
             </nav>
-         
+
             @RenderBody()
             <br />
             @Html.Partial("footer")
         </div>
     </div>
 
+    @*PROGRESS BAR MODAL*@
+    <div class="modal fade in" id="mod-progress" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <div class="i-circle warning"><i class="fa fa-info"></i></div>
+                        <div id="result" style="font-size: 1.1em; padding-bottom: 5px">
+                            <p id="progressBarParagraph"></p>
+                        </div>
+                        <div style="width: 30%; margin: 0 auto; display:none;">
+                            <div id="progressbar" style="width: 300px; height: 15px"></div>
+                            <br />
+                        </div>
+                        <div id="ProgressStripe" class="progress progress-striped active" style="position:relative; top:10px; width:100%;">
+                            <div id="ProgressMessage" class="progress-bar progress-bar-info" style="width: 100%; border:none;"></div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
     <script src="~/Content/js/bootstrap.min.js" id="script-resource-1"></script>
     <script src="~/Content/js/TweenMax.min.js" id="script-resource-2"></script>
     <script src="~/Content/js/resizeable.js" id="script-resource-3"></script>
@@ -92,5 +159,6 @@
     <script src="~/Content/js/xenon-api.js" id="script-resource-5"></script>
     <script src="~/Content/js/xenon-toggles.js" id="script-resource-6"></script>
     <script src="~/Content/js/xenon-custom.js" id="script-resource-7"></script>
+    @RenderSection("scripts", false)
 </body>
 </html>
