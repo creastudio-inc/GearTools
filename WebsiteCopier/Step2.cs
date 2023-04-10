@@ -30,15 +30,15 @@ namespace WebsiteCopier
                 }
                 if (balise.type == "nav")
                 {
-                    Html += "@Html.Partial(\"_nav\")" + Environment.NewLine;
+                    Html += "@Html.Partial(\"Partial/_nav\")" + Environment.NewLine;
                 }
                 if (balise.type == "footer")
                 {
-                    Html += "@Html.Partial(\"_footer\")" + Environment.NewLine;
+                    Html += "@Html.Partial(\"Partial/_footer\")" + Environment.NewLine;
                 }
                 if (balise.type == "header")
                 {
-                    Html += "@Html.Partial(\"_header\")" + Environment.NewLine;
+                    Html += "@Html.Partial(\"Partial/_header\")" + Environment.NewLine;
                 }
             }
 
@@ -186,24 +186,25 @@ namespace WebsiteCopier
 
         public static string BuildHeader(Header Header)
         {
-            String Html = "";
+            String Html = "<header class=\""+Header.className+"\">";
             Html += Header.innerHTml;
+            Html += "</header>";
             return Html;
         }
 
         public static string BuildNav(Nav nav)
         {
-            String Html = "";
-
+            String Html = "<nav class=\""+ nav.className+"\">";
             Html += nav.innerHTml;
+            Html += "</nav>";
             return Html;
         }
 
         public static string BuildFooter(Footer footer)
         {
-            String Html = "";
-
+            String Html = "<footer class=\"" + footer.className + "\">";
             Html += footer.innerHTml;
+            Html += "</footer>";
             return Html;
         }
     }

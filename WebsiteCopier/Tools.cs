@@ -63,7 +63,7 @@ namespace WebsiteCopier
             var liste = Step2.buildStructure(layoutPage, document);
 
             Html += Step2.buildbodyContenu(layoutPage, liste, 0, 0) + Environment.NewLine;
-            Html += "@Html.Partial(\"_script\")" + Environment.NewLine;
+            Html += "@Html.Partial(\"Partial/_script\")" + Environment.NewLine;
             Html += "@RenderSection(\"scripts\", required: false)" + Environment.NewLine;
             Html += "</body>" + Environment.NewLine;
             Html += "</html>" + Environment.NewLine;
