@@ -9,7 +9,7 @@ namespace WebsiteCopier
         public static Entity.Layout.Container RendeContainer(HtmlNode node)
         {
             var container = new Entity.Layout.Container();
-            container.className = string.Join("", node.GetClasses());
+            container.className = string.Join(" ", node.GetClasses());
             container.innerHTml = node.InnerHtml;
             container.xPath = node.XPath.Replace("/html[1]/body[1]/", "") + "/Container[1]";
             return container;
@@ -18,7 +18,7 @@ namespace WebsiteCopier
         public static Header RenderHeader(HtmlNode node)
         {
             var header = new Header();
-            header.className = string.Join("", node.GetClasses());
+            header.className = string.Join(" ", node.GetClasses());
             header.innerHTml = node.InnerHtml;
             header.xPath = node.XPath.Replace("/html[1]/body[1]/", "");
             return header;
@@ -27,7 +27,7 @@ namespace WebsiteCopier
         public static Nav RendeNav(HtmlNode node)
         {
             var nav = new Nav();
-            nav.className = string.Join("", node.GetClasses());
+            nav.className = string.Join(" ", node.GetClasses());
             nav.innerHTml = node.InnerHtml;
             nav.xPath = node.XPath.Replace("/html[1]/body[1]/", "");
             return nav;
@@ -56,7 +56,7 @@ namespace WebsiteCopier
         public static Footer RenderFooter(HtmlNode node)
         {
             var footer = new Footer();
-            footer.className = string.Join("", node.GetClasses());
+            footer.className = string.Join(" ", node.GetClasses());
             footer.innerHTml = node.InnerHtml;
             footer.xPath = node.XPath.Replace("/html[1]/body[1]/", "");
             return footer;

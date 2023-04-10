@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
+using System.Text.RegularExpressions;
 using WebsiteCopier.Entity.Layout;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebsiteCopier
 {
@@ -143,9 +146,14 @@ namespace WebsiteCopier
             String Html = "";
             foreach (var item in links)
             {
+
                 if (!item.href.Contains("fonts.googleapis."))
+                {
+                    if (item.href.StartsWith("https")) 
+                        item.href=item.href.Replace(WebsiteCopier.Tools.baseUrl, "");
                     FileFolder.downloadfile(GetAbsoluteUrlString(item.href), "Content/" + item.href);
-                var href = !string.IsNullOrEmpty(item.href) ? "href=\"~/Content/" + item.href + "\"" : "";
+                }
+                var href = item.href.StartsWith("https") ? "href=\"" + item.href + "\"" : "href=\"~/Content/" + item.href + "\"";
                 var rel = !string.IsNullOrEmpty(item.rel) ? "rel=\"" + item.rel + "\"" : "";
                 var type = !string.IsNullOrEmpty(item.type) ? "type=\"" + item.type + "\"" : "";
                 Html += "<link " + rel + " " + href + " " + type + " >" + Environment.NewLine;
@@ -158,9 +166,17 @@ namespace WebsiteCopier
             String Html = "";
             foreach (var item in scripts)
             {
-                FileFolder.downloadfile(GetAbsoluteUrlString(item.src), "Content/" + item.src);
-                var src = !string.IsNullOrEmpty(item.src) ? "src=\"~/Content/" + item.src + "\"" : "";
-                Html += "<script " + src + "  ></script>" + Environment.NewLine;
+                if (!string.IsNullOrEmpty(item.src))
+                {
+
+                    if (item.src.StartsWith("https")) { 
+                            item.src = item.src.Replace(WebsiteCopier.Tools.baseUrl, "");
+                        FileFolder.downloadfile(GetAbsoluteUrlString(item.src), "Content/" + item.src);
+                    }
+                    var src = !string.IsNullOrEmpty(item.src) ? "src=\"~/Content/" + item.src + "\"" : "";
+                    Html += "<script " + src + "  ></script>" + Environment.NewLine;
+                }
+            
             }
             return Html;
         }
@@ -207,5 +223,41 @@ namespace WebsiteCopier
             Html += "</footer>";
             return Html;
         }
+        public static void dowloadFileTff(List<Link> links)
+        {
+            foreach(var item in links.Where(x=> x.href!=""))
+            {
+                if (!string.IsNullOrEmpty(item.href) && !item.href.Contains("data:image") && !item.href.Contains("svg") && !item.href.Contains("png") && !item.href.Contains("fonts.googleapis"))
+                {
+                    var source = FileFolder.ReadContents("Content/" + item.href);
+                    Regex MyRegex = new Regex("url\\((.[^)]*)\\)",
+                   RegexOptions.Multiline
+                   | RegexOptions.CultureInvariant
+                   | RegexOptions.Compiled
+                   );
+
+                    var result = MyRegex.Matches(source);
+
+                    foreach (var css in result)
+                    {
+                        var aa = css.ToString().Replace("url(", "").Replace("url('", "").Replace(")","").Replace("')","");
+                        var href = item.href.Substring(0, item.href.Length-((item.href.Split('/').Last().Length) + 1));
+                        var url = href +  "/" + aa;
+                        if(url.Contains("../"))
+                        {
+                            href = href.Substring(0, href.Length - ((href.Split('/').Last().Length) + 1));
+                            url = href + "/" + aa;
+                            url = url.Replace("../", "").Replace("./", "").Replace("'", "").Replace("'", "");
+                        }
+                        var last = url.Split('?');
+                        if(!url.Contains("fonts.googleapis") &&!url.Contains("data:application") &&!url.Contains("data:image"))
+                        FileFolder.downloadfile(WebsiteCopier.Tools.baseUrl + "/" + url, "Content/" + url.Replace("?" +last.Last(),""));
+                    }
+
+                }
+
+            }
+        }
+        
     }
 }

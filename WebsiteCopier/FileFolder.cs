@@ -45,6 +45,11 @@ namespace WebsiteCopier
                 tw.WriteLine(contents);
             }
         }
+        public static string ReadContents(String path)
+        {
+          return  System.IO.File.ReadAllText(WebsiteCopier.Tools.FolderTmp + "/" + path);
+
+        }
 
 
         public static void downloadfile(String link, String path)
@@ -72,6 +77,7 @@ namespace WebsiteCopier
             }
             catch (Exception ex)
             {
+                var aa = path;
                 //throw ex;
             }
         }

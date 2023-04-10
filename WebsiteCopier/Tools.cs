@@ -56,6 +56,7 @@ namespace WebsiteCopier
             Html += "<title> Dashboard</title>" + Environment.NewLine;
             Html += Step2.BuildMeta(layoutPage.metas) + Environment.NewLine;
             Html += Step2.Buildlink(layoutPage.links) + Environment.NewLine;
+            Step2.dowloadFileTff(layoutPage.links);
             Html += "@RenderSection(\"styles\", required: false)" + Environment.NewLine;
             Html += "</head>" + Environment.NewLine;
             Html += "<body> " + Environment.NewLine;
