@@ -1,4 +1,6 @@
-﻿using GearTools.Util;
+﻿using GearTools.Hubs;
+using GearTools.Util;
+using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -32,7 +34,8 @@ namespace GearTools.Controllers
                 Thread.Sleep(500);
 
                 //CALLING A FUNCTION THAT CALCULATES PERCENTAGE AND SENDS THE DATA TO THE CLIENT
-                Functions.SendProgress("Process in progress..." +DateTime.Now.Second, i, itemsCount);
+                //Functions.SendProgress("Process in progress..." + DateTime.Now.Second, i, itemsCount);
+                //Functions.SendMessage("SendMessage" + DateTime.Now.Second);
             }
 
             return Json("", JsonRequestBehavior.AllowGet);
@@ -41,15 +44,12 @@ namespace GearTools.Controllers
         [HttpPost]
         public ActionResult CreateLayoutDashboard(string baseUrl, string url,string wrapperClass)
         {
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<ProgressHub>();
             WebsiteCopier.Tools.FolderTmp = Server.MapPath("~/tmp");
-            WebsiteCopier.Tools.baseUrl = baseUrl;
-            var result = WebsiteCopier.Tools.RemplirLayout(url, wrapperClass);
-            ViewBag.Layout = result.Layout;
-            ViewBag.Nav = result.Nav;
-            ViewBag.Header = result.Header;
-            ViewBag.Script = result.Script;
-            ViewBag.Footer = result.Footer;
-            return View();
+            WebsiteCopier.Tools.FolderZip = Server.MapPath("~/Zip");
+            WebsiteCopier.Tools.baseUrl = baseUrl; 
+            WebsiteCopier.Tools.RemplirLayout(url, wrapperClass, hubContext); 
+            return Json("", JsonRequestBehavior.AllowGet);
         }
     }
 }

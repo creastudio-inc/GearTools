@@ -1,4 +1,5 @@
-﻿using HtmlAgilityPack;
+﻿using GearTools.Util;
+using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -146,6 +147,7 @@ namespace WebsiteCopier
             String Html = "";
             foreach (var item in links)
             {
+                Functions.SendLogMessage("item" + item.href);
 
                 if (!item.href.Contains("fonts.googleapis."))
                 {
@@ -227,6 +229,8 @@ namespace WebsiteCopier
         {
             foreach(var item in links.Where(x=> x.href!=""))
             {
+                Functions.SendLogMessage("item" + item.href);
+
                 if (!string.IsNullOrEmpty(item.href) && !item.href.Contains("data:image") && !item.href.Contains("svg") && !item.href.Contains("png") && !item.href.Contains("fonts.googleapis"))
                 {
                     var source = FileFolder.ReadContents("Content/" + item.href);
@@ -251,7 +255,7 @@ namespace WebsiteCopier
                         }
                         var last = url.Split('?');
                         if(!url.Contains("fonts.googleapis") &&!url.Contains("data:application") &&!url.Contains("data:image"))
-                        FileFolder.downloadfile(WebsiteCopier.Tools.baseUrl + "/" + url, "Content/" + url.Replace("?" +last.Last(),""));
+                            FileFolder.downloadfile(WebsiteCopier.Tools.baseUrl + "/" + url, "Content/" + url.Replace("?" +last.Last(),"").Replace("\"",""));
                     }
 
                 }

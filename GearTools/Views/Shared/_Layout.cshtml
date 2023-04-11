@@ -26,6 +26,7 @@
 
             if (showHide === 'show') {
                 $('#mod-progress').modal('show');
+                console.log("ar", arguments)
                 if (arguments.length >= 2) {
                     $('#progressBarParagraph').text(arguments[1]);
                 } else {
@@ -42,18 +43,23 @@
         $(function () {
             // Reference the auto-generated proxy for the hub.
             var progress = $.connection.progressHub;
-            console.log(progress);
             // Create a function that the hub can call back to display messages.
             progress.client.AddProgress = function (message, percentage) {
+                console.log("AddProgress ", message + " " + percentage)
                 ProgressBarModal("show", message + " " + percentage);
                 $('#ProgressMessage').width(percentage);
-                if (percentage == "100%") {
-                    ProgressBarModal();
-                }
+                //if (percentage == "100%") {
+                //    ProgressBarModal();
+                //}
+            };
+            progress.client.SendLogMessage = function (message) {
+                $('#logParagraph').append('<p>' + message + '</p>');
+                $("#logParagraph").scrollTop($("#logParagraph")[0].scrollHeight);
+
             };
             $.connection.hub.start().done(function () {
                 var connectionId = $.connection.hub.id;
-                console.log(connectionId);
+                console.log("connectionId",connectionId);
             });
         });
     </script>
@@ -129,10 +135,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
+                    <div id="logParagraph" class="well" style="font-size: 1.1em; padding-bottom: 5px; height: 180px; overflow-y: scroll;">
+
+                    </div>
                     <div class="text-center">
-                        <div class="i-circle warning"><i class="fa fa-info"></i></div>
                         <div id="result" style="font-size: 1.1em; padding-bottom: 5px">
                             <p id="progressBarParagraph"></p>
                         </div>

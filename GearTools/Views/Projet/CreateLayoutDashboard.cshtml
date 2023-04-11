@@ -4,6 +4,23 @@
 }
 @section scripts{
     <script>
+        $(document).ready(function () {
+            $("#btnsubmit").click(function (e) {
+                //Serialize the form datas.
+                var valdata = $("#form").serialize();
+                //to get alert popup
+                $.ajax({
+                    url: "@Url.Action("CreateLayoutDashboard")",
+                    type: "POST",
+                    dataType: 'json',
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: valdata
+                });
+            });
+        });
+    </script>
+
+    <script>
         //CALLING METHOD IN THE CONTROLLER TO DO SOME WORK
         function StartProcess() {
 
@@ -19,68 +36,52 @@
                 });
         }
     </script>
-    Footer
-    © 2023 GitHub, Inc.
 }
 
-<button onclick="StartProcess()" type="button" class="btn btn-primary btn-success">Start the process</button>
-
-
-
-<h2>Create New Student</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.Label("baseUrl", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBox("baseUrl", "https://gambolthemes.net/html-items/cursus_main_demo/", new { @class = "form-control" })
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Inline Form</h3>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.Label("url", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBox("url", "https://gambolthemes.net/html-items/cursus_main_demo/student_dashboard.html", new { @class = "form-control" })
-            </div>
-        </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("CreateLayoutDashboard", "Projet",
+                            new { ReturnUrl = ViewBag.ReturnUrl },
+                            FormMethod.Post, new { id = "form" ,@class= "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.Label("wrapperClass", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBox("wrapperClass", "wrapper", new { @class = "form-control" })
-            </div>
-        </div>
+                    <div class="form-group">
+                        @Html.Label("baseUrl", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBox("baseUrl", "https://gambolthemes.net/html-items/cursus_main_demo/", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group-separator"></div>
+                    <div class="form-group">
+                        @Html.Label("url", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBox("url", "https://gambolthemes.net/html-items/cursus_main_demo/student_dashboard.html", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group-separator"></div>
+                    <div class="form-group">
+                        @Html.Label("wrapperClass", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBox("wrapperClass", "wrapper", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group-separator"></div>    
+                    <div class="form-group">
+                        <button type="button" id="btnsubmit" class="btn btn-info btn-single pull-right">Create</button>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                }
             </div>
-        </div>
-        <div class="form-group">
-            Layout
-            <textarea class="form-control">@ViewBag.Layout </textarea>
-        </div>
-        <div class="form-group">
-            Nav
-            <textarea class="form-control">@ViewBag.Nav </textarea>
-        </div>
-        <div class="form-group">
-            Header
-            <textarea class="form-control">@ViewBag.Header </textarea>
-        </div>
-        <div class="form-group">
-            Script
-            <textarea class="form-control">@ViewBag.Script </textarea>
-        </div>
-        <div class="form-group">
-            Footer
-            <textarea class="form-control">@ViewBag.Footer </textarea>
         </div>
     </div>
-}
+
+</div>
+<button onclick="StartProcess()" type="button" class="btn btn-primary btn-success">Start the process</button>
 
