@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebsiteCopier", "WebsiteCop
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnalyticsCode", "AnalyticsCode\AnalyticsCode.csproj", "{01ADD735-EBC0-47FA-83CD-98CF8CD99839}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AOEntityFramework", "AOEntityFramework\AOEntityFramework.csproj", "{F6A70A9D-9CCB-422F-8CE2-7CB8C5D3E78E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AOEntityFrameworkDemo", "AOEntityFrameworkDemo\AOEntityFrameworkDemo.csproj", "{0E01865E-5E24-49AD-A3EE-5F15A847A96A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{01ADD735-EBC0-47FA-83CD-98CF8CD99839}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01ADD735-EBC0-47FA-83CD-98CF8CD99839}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01ADD735-EBC0-47FA-83CD-98CF8CD99839}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6A70A9D-9CCB-422F-8CE2-7CB8C5D3E78E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A70A9D-9CCB-422F-8CE2-7CB8C5D3E78E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A70A9D-9CCB-422F-8CE2-7CB8C5D3E78E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A70A9D-9CCB-422F-8CE2-7CB8C5D3E78E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E01865E-5E24-49AD-A3EE-5F15A847A96A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E01865E-5E24-49AD-A3EE-5F15A847A96A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E01865E-5E24-49AD-A3EE-5F15A847A96A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E01865E-5E24-49AD-A3EE-5F15A847A96A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
